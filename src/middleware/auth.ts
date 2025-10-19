@@ -1,11 +1,11 @@
-import jwt from"jsonwebtoken"
-import { Request,Response,NextFunction } from "express";
+import jwt from "jsonwebtoken"
+import { Request, Response, NextFunction } from "express";
 
 export interface AuthRequest extends Request {
     user?: any
 };
 
-export const authenticateToken = (req:AuthRequest, res: Response, next: NextFunction) =>{
+export const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if (!token) {
@@ -13,7 +13,7 @@ export const authenticateToken = (req:AuthRequest, res: Response, next: NextFunc
     }
 
     try {
-        const decode = jwt.verify(token, 'Your secrete key')
+        const decode = jwt.verify(token, process.env.JWT_SECRET || 'Your secrete key')
         req.user = decode;
         next();
     } catch (error) {
@@ -21,7 +21,7 @@ export const authenticateToken = (req:AuthRequest, res: Response, next: NextFunc
     }
 }
 
-        
+
 
 
 
