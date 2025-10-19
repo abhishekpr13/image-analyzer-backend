@@ -5,7 +5,17 @@
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "init-db": "ts-node src/scripts/init-db.ts",
+    "setup-db": "ts-node src/scripts/setup-database.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "ts-node src/scripts/generate-migration.ts",
+    "migration:run": "npm run typeorm -- migration:run -d src/config/database.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d src/config/database.ts",
+    "migration:show": "npm run typeorm -- migration:show -d src/config/database.ts",
+    "migration:create": "npm run typeorm -- migration:create src/migrations/",
+    "schema:drop": "npm run typeorm -- schema:drop -d src/config/database.ts",
+    "schema:sync": "npm run typeorm -- schema:sync -d src/config/database.ts"
   },
   "keywords": [],
   "author": "",

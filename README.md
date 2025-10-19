@@ -73,7 +73,27 @@ The application uses two main entities:
 - `npm run dev` - Start development server with hot reload
 - `npm run build` - Build the project
 - `npm start` - Start production server
+- `npm run setup-db` - Complete database setup with automatic migrations
+
+## Database Migrations
+
+The application uses **automatic migration generation** based on entity changes. See [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) for detailed instructions.
+
+### Quick Migration Commands
+- `npm run setup-db` - Complete database setup (first time)
+- `npm run migration:generate -- MigrationName` - Generate migration from entity changes
+- `npm run migration:run` - Run pending migrations
+- `npm run migration:revert` - Revert last migration
+- `npm run migration:show` - Show migration status
+
+### How It Works
+1. **Modify entities** in `src/entities/`
+2. **Generate migration** automatically: `npm run migration:generate -- YourMigrationName`
+3. **Review** the generated migration file
+4. **Apply** the migration: `npm run migration:run`
 
 ## Docker
 
 The PostgreSQL database runs in a Docker container. Use `docker-compose up -d` to start it and `docker-compose down` to stop it.
+
+The database will automatically initialize with the required extensions and migrations table on first startup.
