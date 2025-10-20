@@ -18,12 +18,12 @@ async function generateMigration(migrationName: string) {
         console.log('Running command:', command);
         execSync(command, { stdio: 'inherit' });
 
-        console.log(`✅ Migration '${migrationName}' generated successfully!`);
-        console.log('📝 Review the generated migration file before running it.');
-        console.log('🚀 Run "npm run migration:run" to apply the migration.');
+        console.log(` Migration '${migrationName}' generated successfully!`);
+        console.log('Review the generated migration file before running it.');
+        console.log('Run "npm run migration:run" to apply the migration.');
 
     } catch (error) {
-        console.error('❌ Error generating migration:', error);
+        console.error('Error generating migration:', error);
         process.exit(1);
     }
 }
@@ -32,7 +32,7 @@ async function generateMigration(migrationName: string) {
 const migrationName = process.argv[2];
 
 if (!migrationName) {
-    console.error('❌ Please provide a migration name:');
+    console.error('Please provide a migration name:');
     console.log('Usage: npm run migration:generate -- MigrationName');
     console.log('Example: npm run migration:generate -- AddUserProfile');
     process.exit(1);

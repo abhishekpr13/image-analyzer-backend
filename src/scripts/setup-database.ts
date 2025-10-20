@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import "reflect-metadata";
 import { execSync } from 'child_process';
 import { AppDataSource } from '../config/database';
