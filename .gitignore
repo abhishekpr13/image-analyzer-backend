@@ -8,3 +8,5 @@ build/
 uploads/
 *.log
 .DS_Store
+uploads/*
+!uploads/.gitkeep

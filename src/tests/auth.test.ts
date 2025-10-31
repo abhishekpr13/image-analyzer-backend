@@ -68,7 +68,7 @@ describe("authentication test",()=>{
         .post('/api/auth/login')
         .send ({
             email: testUser.email,
-            password: 'wrongpassword999'  
+            password: 'wrongpassword999'
         });
         
         expect(loginResponse.status).toBe(400);

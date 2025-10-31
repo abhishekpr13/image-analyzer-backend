@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { User } from '../entities/User';
 import { File } from '../entities/File';
+import 'dotenv/config';
 
 export const AppDataSource = new DataSource({
     type: 'postgres',
@@ -15,6 +16,9 @@ export const AppDataSource = new DataSource({
     migrations: ['src/migrations/*.ts'],
     migrationsTableName: 'migrations',
     subscribers: [],
+    ssl: {
+        rejectUnauthorized: false  
+    }
 });
 
 export const initializeDatabase = async () => {

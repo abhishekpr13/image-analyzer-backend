@@ -13,22 +13,22 @@ async function initializeDatabase() {
 
         // Check if migrations table exists
         const hasMigrationsTable = await AppDataSource.query(`
-      SELECT EXISTS (
-        SELECT FROM information_schema.tables 
-        WHERE table_schema = 'public' 
-        AND table_name = 'migrations'
-      );
-    `);
+            SELECT EXISTS (
+            SELECT FROM information_schema.tables 
+            WHERE table_schema = 'public' 
+            AND table_name = 'migrations'
+            );
+        `);
 
         if (!hasMigrationsTable[0].exists) {
             console.log('Migrations table does not exist. Creating...');
             await AppDataSource.query(`
-        CREATE TABLE migrations (
-          id SERIAL PRIMARY KEY,
-          timestamp BIGINT NOT NULL,
-          name VARCHAR NOT NULL
-        );
-      `);
+                CREATE TABLE migrations (
+                id SERIAL PRIMARY KEY,
+                timestamp BIGINT NOT NULL,
+                name VARCHAR NOT NULL
+                );
+            `);
             console.log('Migrations table created successfully');
         }
 
