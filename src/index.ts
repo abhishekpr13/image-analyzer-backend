@@ -82,14 +82,14 @@ app.post('/api/upload', authenticateToken, upload.single('file'), async (req: Au
     }
 });
 
-const port = process.env.PORT || 8000;
 
-// Initialize database and start server
+const port = parseInt(process.env.PORT || '3000', 10); 
+
 const startServer = async () => {
     try {
         await initializeDatabase();
-        app.listen(port, () => {
-            console.log(`Server is running on http://localhost:${port}`);
+        app.listen(port, '0.0.0.0', () => {
+            console.log(`Server is running on http://0.0.0.0:${port}`);
         });
     } catch (error) {
         console.error('Failed to start server:', error);

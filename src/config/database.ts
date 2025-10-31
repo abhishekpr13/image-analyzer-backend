@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME || 'postgres',
     password: process.env.DB_PASSWORD || 'postgres123',
     database: process.env.DB_NAME || 'image_analyzer_db',
-    synchronize: false, // Always use migrations, never synchronize
+    synchronize: false, 
     logging: process.env.NODE_ENV === 'development',
     entities: [User, File],
     migrations: ['src/migrations/*.ts'],
