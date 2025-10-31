@@ -8,7 +8,8 @@ const authrouter = express.Router();
 
 // Register route 
 authrouter.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
+    const { username, email, password } = req.body;  // Changed: name → username
+    
     try {
         // Check if user exists
         const userRepository = AppDataSource.getRepository(User);
@@ -21,9 +22,9 @@ authrouter.post('/register', async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create new user 
+        // Create new user with username mapped to name field
         const newUser = userRepository.create({
-            name,
+            name: username,  // Map username to name field
             email,
             password: hashedPassword
         });
