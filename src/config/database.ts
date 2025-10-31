@@ -16,9 +16,10 @@ export const AppDataSource = new DataSource({
     migrations: ['src/migrations/*.ts'],
     migrationsTableName: 'migrations',
     subscribers: [],
-    ssl: {
+    // Only use SSL in production (AWS RDS)
+    ssl: process.env.NODE_ENV === 'production' ? {
         rejectUnauthorized: false  
-    }
+    } : false,
 });
 
 export const initializeDatabase = async () => {
